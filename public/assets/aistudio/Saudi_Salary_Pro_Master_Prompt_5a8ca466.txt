@@ -1,0 +1,685 @@
+SAUDI SALARY PRO — MASTER BUILD PROMPT For Google AI Studio or another
+AI website-building tool
+
+HOW TO USE THIS FILE 1. Open Google AI Studio and start a new
+app/project. 2. Copy the section “FIRST MESSAGE TO GOOGLE AI STUDIO” and
+send it first. 3. Then upload this TXT file to the project if file
+upload is available, or copy the entire “MASTER PROMPT” section into the
+chat. 4. If the AI builds only a design or partial app, use the
+“CONTINUE BUILDING” message at the end. 5. Do not enter real employee
+salary or identity data until privacy, storage, and access controls have
+been tested.
+
+============================================================ FIRST
+MESSAGE TO GOOGLE AI STUDIO
+============================================================
+
+I want you to build a complete, production-minded web application based
+on the attached file named “Saudi Salary Pro — Master Build Prompt.txt”.
+
+Read the entire specification before coding. Follow it as the project
+requirements.
+
+Do not create only a landing page, UI mockup, or demo. Build a working
+application with real calculations, employee accounts/profiles, payroll
+management, reports, data storage, and clear setup instructions.
+
+First, briefly identify: 1. Which features you can implement directly in
+this environment. 2. Which features need external setup, API
+credentials, database configuration, or deployment. 3. Any legal
+calculation that needs verification against current official Saudi
+sources.
+
+Then start building the application in phases. Begin with the
+architecture, data model, and a working salary/overtime calculation
+engine. Keep calculation logic separate from UI code and write automated
+tests. Continue until the complete application is implemented; do not
+stop after the plan or initial UI.
+
+Use the reference salary-slip values only for private test cases. Never
+expose those values or personal details on the public homepage or public
+demo.
+
+If a feature cannot be fully implemented in this environment, clearly
+explain the limitation and implement the best safe, functional
+alternative. Never pretend that an unconfigured integration is working.
+
+============================================================ MASTER
+PROMPT ============================================================
+
+PROJECT: SAUDI ARABIA ALL-IN-ONE EMPLOYEE SALARY, PAYROLL & BENEFITS
+SOFTWARE
+
+Act as a senior full-stack software engineer, payroll specialist, Saudi
+labor-law researcher, database architect, security engineer,
+accessibility expert, and UI/UX designer.
+
+Build a complete, working, responsive web application for employees and
+employers in Saudi Arabia. It must support all three use cases: 1.
+Personal Salary Calculator. 2. Multi-Employee Management System. 3. Full
+Payroll and Employee Benefits Management Software.
+
+This must be a real, functional application—not only a landing page,
+static mockup, or collection of buttons that do nothing.
+
+PRODUCT NAME Working name: Saudi Salary Pro Subtitle: Saudi Arabia
+Employee Salary & Benefits Calculator Make the product name, logo,
+currency, language, and settings configurable.
+
+============================================================ 1.
+REFERENCE SALARY SLIP — STRICT PRIVACY
+============================================================
+
+A real salary slip has been provided as a private reference document.
+Use it only to understand payroll-slip structure and privately test
+calculations.
+
+Reference values for private test-case validation only: - Basic Salary:
+SAR 2,050.00 - Food Allowance: SAR 200.00 - Overtime: 44 hours and 30
+minutes - Displayed Overtime Amount: SAR 607.24 - Displayed Gross
+Earnings: SAR 2,857.24 - Displayed Deduction: SAR 300.00 - Displayed Net
+Salary: SAR 2,557.00
+
+PRIVACY RULES: - Never display the original salary slip on the public
+homepage. - Never show the reference employee’s name, employee ID, IBAN,
+identity details, or salary figures on the homepage or public demo. - Do
+not hardcode reference values into public demo data, public assets,
+URLs, screenshots, sample accounts, or frontend defaults. - Do not
+upload the original slip to a third-party service without explicit
+consent. - Use blank fields or clearly fictional sample data for public
+demonstrations. - Keep reference test cases private and separate from
+demo records. - Do not require an IBAN or national identity number just
+to calculate salary. - Never use the real salary-slip details as a
+default employee profile.
+
+============================================================ 2.
+MULTILINGUAL, MULTI-COUNTRY-USER EXPERIENCE
+============================================================
+
+The application must be usable by people who speak different languages
+and have different levels of technical literacy.
+
+Initial languages: - English - Arabic - Bengali - Urdu - Hindi -
+Tagalog - Malayalam - Tamil - Nepali
+
+Build the language system so more languages can be added without
+rewriting the application.
+
+Requirements: - A clear language selector available from the main
+interface and settings. - Translate all navigation, buttons, labels,
+form fields, help text, validation messages, errors, confirmations,
+empty states, reports, PDF labels, and settings. - Arabic and Urdu must
+support right-to-left (RTL) layout; English, Bengali, Hindi, Tagalog,
+Malayalam, Tamil, and Nepali must display correctly in left-to-right
+(LTR) layouts as appropriate. - Use Unicode-safe fonts and ensure all
+scripts render correctly. - Do not mix untranslated labels into a
+translated interface except where a legal or technical term must be
+shown with an explanation. - Use simple, plain language and clear icons;
+do not rely on icons alone. - Provide a “Simple Mode” for users who need
+fewer options and a “Detailed Mode” for payroll professionals. - Show
+tooltips or short explanations for terms such as Basic Wage, Actual
+Wage, Gross Salary, Net Salary, Overtime, EOSB, and Final Settlement. -
+Keep calculations identical when the display language changes. - Allow
+each user to select their preferred language independently. - Store
+language preference in the user profile and local settings. - Use
+locale-aware date, number, decimal, and currency formatting. - Allow
+Gregorian dates; provide Hijri date display only if a reliable supported
+implementation is configured. Never silently convert dates
+incorrectly. - Provide translated PDF and printable reports where
+supported. - Make the translation dictionary organized and maintainable.
+Do not scatter hardcoded text throughout components. - Where
+professional legal translation is unavailable, label the translation as
+informational and preserve the official English/Arabic legal term for
+reference.
+
+============================================================ 3.
+MULTI-USER DATA SAVING AND ACCOUNT SEPARATION
+============================================================
+
+Different users must be able to save and manage their own data without
+seeing another user’s private data.
+
+Support: - Personal account and private employee profile. -
+Employer/company workspace. - Multiple employees within a company
+workspace. - Role-based access: Owner/Admin, HR/Payroll Manager,
+Supervisor/Read-only, and Employee/Self-service. - A user may have
+access to their own records and only those company records permitted by
+their role. - Each company workspace must have its own separated
+employee records, payroll records, settings, and reports. - Prevent
+cross-user and cross-company data leakage. - Employees must not be able
+to view other employees’ salary records unless explicitly authorized. -
+Provide account sign-up, sign-in, sign-out, password reset, and secure
+session handling if authentication is supported by the chosen
+platform. - Do not store plaintext passwords. - Use secure
+authentication and authorization, not only frontend hiding. - Enforce
+database-level access controls such as Row Level Security (RLS), where
+supported. - Validate authorization on the server/database side for
+every sensitive operation. - Include a clear account deletion and data
+export process. - Explain where data is stored and who can access it. -
+Do not claim that data is “secure” merely because it is stored locally
+or hidden in the UI. - Do not store sensitive data in public folders,
+public URLs, source code, or logs. - Keep audit records for important
+payroll edits, approvals, and exports where appropriate. - Provide
+backup and recovery guidance.
+
+STORAGE MODES: A. Local-only mode: private data stored in the user’s
+browser/device using IndexedDB. Clearly explain that browser data can be
+lost if the user clears site data, loses the device, or uses another
+browser/device. B. Cloud mode: authenticated users can store data in a
+properly configured secure database and access it from their authorized
+devices. C. Optional sync mode: sync selected local data to the cloud
+after sign-in and explicit user consent.
+
+If cloud database or authentication credentials are not configured, show
+that cloud mode is unavailable. Do not fake multi-user cloud storage by
+saving all users’ data into one shared browser store.
+
+When multiple devices are used, cross-device data access requires cloud
+storage or a deliberate export/import workflow. Explain this clearly.
+
+============================================================ 4.
+APPLICATION ARCHITECTURE
+============================================================
+
+Recommended technology choices, adjusted to the platform’s
+capabilities: - Frontend: React + TypeScript. - UI: Tailwind CSS or an
+equivalent responsive design system. - Calculation engine: reusable,
+independently tested TypeScript modules. - Local storage: IndexedDB. -
+Cloud storage: a properly configured secure database such as Supabase or
+an equivalent. - Authentication: secure provider integration. - PWA:
+installable Progressive Web App for supported offline features. - PDF:
+reliable PDF generation library. - Spreadsheet support: CSV/XLSX
+import/export and optional Google Sheets API integration. - Testing:
+unit tests and integration tests for calculations, permissions, and data
+operations.
+
+Use maintained, compatible libraries. Keep secrets on a secure
+server-side environment; never expose service-role keys, private API
+keys, OAuth client secrets, access tokens, or refresh tokens in frontend
+code.
+
+Create a maintainable project structure, database schema, migrations
+where applicable, environment variable example file without secrets,
+setup guide, and deployment guide.
+
+============================================================ 5.
+PROFESSIONAL INTERFACE AND DASHBOARD
+============================================================
+
+Design a clean, premium, responsive interface for desktop, tablet, and
+mobile.
+
+Use professional colors such as navy, white, and restrained green
+accents, but maintain accessibility and strong contrast.
+
+Dashboard should offer: - Personal Salary Calculator - Overtime
+Calculator - EOSB Calculator - Annual Leave Calculator - Final
+Settlement Calculator - Employee Management - Monthly Payroll -
+Reports - Import/Export - Settings and Language
+
+For a new user, display a welcome message and clear actions. Do not show
+personal salary data until the user signs in or selects their own
+profile and requests it.
+
+For employer workspaces, show aggregate statistics only to authorized
+roles. Never expose salary amounts on a public page.
+
+Include: - Clear navigation and breadcrumbs. - Search and filters for
+employee lists. - Accessible keyboard navigation. - Helpful empty
+states. - Clear validation and error messages. - Confirmation before
+destructive actions. - Loading, success, failure, offline, and
+sync-status indicators. - Responsive tables or mobile-friendly cards. -
+Print-friendly report layouts.
+
+============================================================ 6. EMPLOYEE
+PROFILE MANAGEMENT
+============================================================
+
+Support multiple employee profiles with fields such as: - Employee
+name - Employee ID or company reference - Nationality - Job title -
+Department - Employer/company - Employment start date - Employment end
+date, if applicable - Contract type - Contract start and end dates -
+Probation information, if relevant - Basic monthly salary - Housing
+allowance - Food allowance - Transport allowance - Other fixed
+allowances - Variable earnings - Annual leave entitlement - Normal
+working schedule - Working hours - Overtime categories and eligibility -
+Payroll frequency - Salary payment history - Deduction history - Leave
+history - Contract notes
+
+Make fields optional when not necessary. Do not require sensitive
+identification or bank information unless a specific workflow genuinely
+needs it.
+
+Support create, view, edit, archive, restore, and delete operations with
+appropriate permissions and confirmations. Provide duplicate-employee
+warnings and safe search/filtering.
+
+============================================================ 7. SALARY
+CALCULATOR ============================================================
+
+Inputs: - Basic Salary - Housing Allowance - Food Allowance - Transport
+Allowance - Other Fixed Allowances - Variable Allowances - Bonus -
+Commission - Regular Overtime - Holiday Overtime - Other Earnings -
+Unpaid Leave Deduction - Absence Deduction - Salary Advance or Loan
+Deduction - Other Documented Deductions
+
+Outputs: - Basic Salary - Total Fixed Allowances - Total Variable
+Earnings - Total Overtime - Gross Earnings - Total Deductions - Net
+Salary - Effective Hourly Wage - Overtime Rate - Earnings breakdown -
+Deductions breakdown - Calculation notes
+
+Starting formula: Gross Earnings = applicable earnings added once. Net
+Salary = Gross Earnings − applicable deductions.
+
+Treat this as a configurable calculation structure, not permission to
+count every allowance as part of every legal wage calculation. Each wage
+component must have clearly defined treatment for the relevant
+calculation (ordinary wage, overtime, EOSB, leave pay, etc.).
+
+Provide a detailed breakdown and prevent double-counting. Support
+monthly, daily, and hourly views where applicable.
+
+============================================================ 8. OVERTIME
+CALCULATOR ============================================================
+
+Inputs: - Basic Monthly Salary - Applicable actual wage components -
+Normal working hours and schedule - Overtime hours and minutes - Regular
+working-day overtime - Weekly rest-day overtime - Public-holiday
+overtime - Approved overtime categories - Selected calculation method
+and rule version
+
+Support both: - Decimal hours, e.g. 44.5 - Hours and minutes, e.g. 44
+hours 30 minutes
+
+44 hours 30 minutes equals 44.5 decimal hours, NOT 44.30 decimal hours.
+
+Saudi Labor Law Article 107 generally describes overtime compensation as
+the hourly wage plus an additional amount equal to 50% of the basic
+hourly wage. Implement the currently applicable official rule and its
+relevant definitions only after checking current official sources and
+implementing regulations.
+
+Requirements: - Distinguish ordinary hourly wage from basic hourly
+wage. - Do not add 50% to the entire salary without legal
+justification. - Do not invent a universal monthly-hours divisor. - Make
+the hourly conversion basis visible and configurable only where legally
+and contractually appropriate. - Avoid duplicate overtime payments. -
+Explain the formula, wage components, divisor, time conversion, and
+rounding. - Identify assumptions and uncertain cases. - Support company
+payroll calculation separately from legal-rule calculation. - Flag
+differences for review instead of automatically declaring a violation.
+
+Private reference test case: Basic Salary SAR 2,050; Food Allowance SAR
+200; overtime 44.5 hours; displayed overtime SAR 607.24.
+
+Under one illustrative assumption—actual wage SAR 2,250 and hourly
+conversion based on 30 days × 8 hours—the estimated overtime is
+approximately SAR 607.74. Compare it with SAR 607.24 and flag the SAR
+0.50 difference for investigation. This is a conditional test, not a
+final legal determination.
+
+============================================================ 9. EOSB
+CALCULATOR ============================================================
+
+Inputs: - Employment start date - Employment end date - Basic wage -
+Other wage components relevant to EOSB - Contract type - Reason for
+termination - Resignation or employer-initiated termination - Applicable
+contract terms - Relevant exceptions
+
+Calculate service duration from dates, including relevant partial years,
+months, and days, with a documented method.
+
+Use current official Saudi legal sources and implementing regulations.
+Relevant provisions may include Articles 84–87 and other applicable
+provisions.
+
+The general statutory structure under Article 84 includes half a month’s
+wage for each of the first five years and one month’s wage for each
+subsequent year, with proportional treatment for qualifying partial
+years. Apply relevant resignation rules and exceptions based on the
+facts; do not assume all resignations have identical entitlements.
+
+Display: - Estimated full EOSB - Applicable estimated statutory
+entitlement - Any resignation-related adjustment - Contractual
+additions, if applicable - Wage basis - Service duration - Formula and
+assumptions - Official source and calculation date
+
+Never represent an estimate as a binding legal determination. Include a
+path to the official HRSD EOSB calculator when its current URL is
+verified.
+
+============================================================ 10. ANNUAL
+LEAVE CALCULATOR
+============================================================
+
+Inputs: - Employment start date - Calculation date - Annual leave
+entitlement - Previous balance - Leave earned - Leave taken - Approved
+future leave - Applicable company policy - Relevant wage components -
+Unpaid leave information, where applicable
+
+Outputs: - Service duration - Leave accrued - Leave taken - Remaining
+leave balance - Estimated leave pay - Projected balance at contract end
+
+Apply current Saudi rules, including the generally applicable minimum
+annual leave entitlement and the applicable increased entitlement after
+five consecutive years with the same employer, while verifying current
+official requirements and any more favorable valid contractual terms.
+
+Distinguish between leave days, estimated leave pay, and amounts payable
+on termination. Do not assume every company policy is identical.
+
+============================================================ 11. FINAL
+SETTLEMENT CALCULATOR
+============================================================
+
+Inputs: - Final working date - Last applicable wage - Unpaid salary -
+Pending overtime - Unpaid allowances - Unpaid bonus, if
+legally/contractually due - Unused annual leave - EOSB estimate - Salary
+advances - Documented lawful deductions - Other applicable
+entitlements - Contractual compensation, if relevant
+
+Calculate total estimated entitlements minus applicable, documented
+deductions.
+
+Display every item separately. Do not automatically deduct hypothetical
+amounts or assume a deduction is lawful. Separate statutory
+entitlements, contractual amounts, and user-entered estimates.
+
+Generate a printable and downloadable PDF report.
+
+============================================================ 12. OTHER
+EMPLOYEE AND PAYROLL TOOLS
+============================================================
+
+Where appropriate, include: - Monthly salary comparison - Salary
+increase calculator - Basic salary versus total wage comparison - Hourly
+wage calculator - Daily wage calculator - Unpaid leave calculator -
+Absence deduction calculator - Salary advance tracker - Bonus
+calculator - Allowance calculator - Annual salary calculator - Overtime
+history - Salary payment history - Contract expiry reminder - Notice
+period information - Leave pay estimate - Employment cost tracker -
+End-of-contract checklist
+
+For Iqama, visa, insurance, GOSI, and government-related topics, provide
+checklists and configurable cost tracking where useful. Do not invent
+current fees, eligibility rules, or entitlements. Clearly label items
+that need official verification.
+
+============================================================ 13. MONTHLY
+PAYROLL AND APPROVAL WORKFLOW
+============================================================
+
+For authorized employer users, provide: - Create payroll period. - Add
+or import employee payroll entries. - Calculate payroll for multiple
+employees. - Review exceptions and missing inputs. - Compare company
+calculations with legal-rule estimates. - Mark payroll as draft, under
+review, approved, or paid. - Restrict approval actions by role. - Lock
+approved payroll periods or record changes with an audit trail. - Export
+payroll summary and employee-level reports. - Prevent duplicate payroll
+records for the same employee and period. - Allow correction workflows
+with reasons and timestamps. - Never silently overwrite approved payroll
+records.
+
+Make clear that the application does not itself transfer wages or submit
+government filings unless a real, authorized integration is implemented.
+
+============================================================ 14. SALARY
+SLIP GENERATOR
+============================================================
+
+Generate professional salary slips using the selected employee’s saved
+data.
+
+Fields: - Employer name and optional logo - Employee name and company
+reference - Department and job title - Payroll month - Basic salary -
+Allowances - Overtime hours and amount - Other earnings - Deductions -
+Gross earnings - Net salary - Optional payment details, only if selected
+by the user
+
+Support English, Arabic, Bengali, Urdu, Hindi, Tagalog, Malayalam,
+Tamil, and Nepali where translations and font rendering are available.
+Arabic and Urdu layouts must support RTL correctly.
+
+Provide A4 PDF and print output. Never copy the reference slip’s real
+identity or values into generated records.
+
+============================================================ 15. GOOGLE
+SHEETS AND FILE IMPORT/EXPORT
+============================================================
+
+Optional Google Sheets integration: - Secure Google authorization
+flow. - Select spreadsheet and worksheet. - Import payroll data. -
+Export salary calculations. - Export overtime, EOSB, leave, and
+settlement reports. - Sync selected employee data. - Prevent
+duplicates. - Show sync status, errors, and conflict resolution.
+
+Never expose API keys, OAuth secrets, or tokens in frontend code.
+Request only necessary permissions. Google Sheets integration must be
+optional.
+
+Provide CSV and XLSX import/export even when Google Sheets is not
+connected. Validate imported columns, dates, numeric values, duplicate
+records, and required fields before saving. Show a preview and request
+confirmation before importing.
+
+============================================================ 16.
+OFFLINE, ONLINE, AND SYNCHRONIZATION
+============================================================
+
+Implement PWA/offline functionality where supported.
+
+Offline features should include: - Installable application - Cached
+application interface - Salary, overtime, EOSB, leave, and settlement
+calculations - Local employee data using IndexedDB - Local salary
+history - PDF generation where supported - Import/export of local data
+
+Clearly show: - Online - Offline - Pending sync - Synced - Sync failed
+
+Google Sheets, cloud backups, online authentication, and live legal
+updates require connectivity.
+
+When connectivity returns: - Do not silently overwrite conflicting
+records. - Provide a safe sync process. - Explain which version will be
+retained before resolving conflicts. - Preserve audit history where
+appropriate.
+
+Do not claim that disconnected devices can sync with Google Sheets while
+offline.
+
+============================================================ 17.
+SECURITY, PRIVACY, AND DATA OWNERSHIP
+============================================================
+
+Treat salary and employment data as confidential.
+
+Implement: - Secure authentication if cloud accounts are used. -
+Server/database-side authorization. - Role-based access control. -
+Tenant/company separation. - Database Row Level Security where
+supported. - Input validation and protection against common web
+vulnerabilities. - Encryption in transit. - Appropriate protection of
+stored sensitive data. - Secure session handling. - Audit logs for
+sensitive changes. - Data export and deletion. - Clear backup and
+recovery guidance.
+
+Never expose private employee records in public URLs or static files. Do
+not rely on hiding UI elements as the only security control.
+
+Explain: - What is stored locally. - What is stored in the cloud. - Who
+can access it. - How data can be exported or deleted. - What happens
+when a user loses a device or clears browser data.
+
+Use fictional test records for demos. Never share user data between
+accounts or company workspaces without explicit authorization.
+
+============================================================ 18. LEGAL
+RULES AND OFFICIAL SOURCES
+============================================================
+
+The target jurisdiction is Saudi Arabia.
+
+Use official Saudi government sources as primary references. Verify URLs
+and current versions before implementation. Potential starting points
+include: - HRSD website: https://www.hrsd.gov.sa/ - Official HRSD
+labor-law and guidance pages. - Official HRSD overtime guidance. -
+Official HRSD EOSB guidance and calculator.
+
+For each legal calculation, record: - Applicable rule - Official
+source - Rule version or effective date, if available - Calculation
+date - Inputs and formula - Result - Assumptions - Unresolved
+uncertainty
+
+Do not claim government approval or legal certification. Do not provide
+false certainty. If rules depend on employment circumstances or are
+unclear, flag the case for human review.
+
+Keep the legal rules engine configurable so verified changes can be
+applied without rewriting the entire application.
+
+============================================================ 19.
+CALCULATION ENGINE AND AUTOMATED TESTS
+============================================================
+
+Keep calculation functions independent from UI components.
+
+Requirements: - Use reliable decimal-safe financial calculations where
+appropriate. - Apply explicit, consistent rounding rules. - Avoid
+monetary floating-point errors. - Validate missing, negative, or invalid
+inputs. - Handle zero overtime. - Handle fractional overtime hours
+correctly. - Handle date boundaries and leap years. - Handle incomplete
+service years. - Avoid duplicate earnings or deductions. - Recalculate
+when relevant inputs change. - Maintain calculation history when
+requested. - Display an audit trail for results.
+
+Create automated unit and integration tests for: 1. Basic salary and
+allowances. 2. Gross and net salary. 3. Overtime calculations. 4.
+Holiday overtime. 5. EOSB for different service periods. 6.
+Resignation-related EOSB rules. 7. Leave accrual and balances. 8. Final
+settlement. 9. Rounding and currency formatting. 10. Offline
+calculations. 11. Import/export validation. 12. User and company access
+permissions. 13. Duplicate payroll prevention. 14. Language switching
+and RTL layout. 15. Data sync conflicts.
+
+Use verified test cases and official legal examples where available. Do
+not claim the application is complete until tests pass. Report failed
+tests honestly.
+
+============================================================ 20. REPORTS
+AND EXPORTS ============================================================
+
+Generate: - Monthly salary report - Overtime report - Employee earnings
+report - Deduction report - Annual leave report - EOSB estimate report -
+Final settlement report - Salary history report - Company payroll
+summary for authorized roles
+
+Support PDF, CSV, XLSX, print layouts, and Google Sheets export when
+connected. Use correct localization and currency formatting. Reports
+must use the selected user’s authorized records only.
+
+============================================================ 21.
+ACCESSIBILITY AND EASE OF USE
+============================================================
+
+-   Use clear labels and simple explanations.
+-   Support keyboard navigation and accessible contrast.
+-   Do not rely on color alone to convey errors or status.
+-   Use large, readable form controls on mobile.
+-   Include help text for unfamiliar payroll terms.
+-   Provide simple and detailed modes.
+-   Translate validation and error messages.
+-   Keep the same data and results when switching languages.
+-   Make it easy for non-technical users to save, find, edit, export,
+    and delete their own records.
+
+============================================================ 22.
+REQUIRED DELIVERABLES
+============================================================
+
+Deliver a working application including: 1. Responsive frontend. 2.
+Functional calculation engine. 3. Personal calculator mode. 4.
+Multi-employee management mode. 5. Full payroll mode. 6. Overtime
+calculator. 7. EOSB calculator. 8. Annual leave calculator. 9. Final
+settlement calculator. 10. Salary slip PDF generator. 11. Employee and
+payroll history. 12. Multi-language interface. 13. RTL support for
+Arabic and Urdu. 14. Offline PWA features where supported. 15. Local
+storage. 16. Optional secure cloud storage and user accounts. 17.
+Optional Google Sheets integration. 18. CSV/XLSX import and export. 19.
+Automated tests. 20. Database schema and access-control policies. 21.
+Setup and deployment instructions. 22. Environment variable
+documentation. 23. User guide. 24. Calculation formula documentation.
+25. Privacy and legal limitations documentation.
+
+Do not deliver only a plan, mockup, or nonfunctional buttons. Implement
+and test features incrementally. If a feature requires external
+configuration, provide the precise setup steps and clearly label it as
+not configured until it is actually connected.
+
+============================================================ 23.
+DEVELOPMENT PHASES
+============================================================
+
+Phase 1: Inspect requirements, define architecture, data model, privacy
+boundaries, and legal calculation specifications. Phase 2: Build
+responsive navigation, language system, and accessible UI. Phase 3:
+Build and test salary and overtime calculation engine. Phase 4: Build
+and test EOSB, annual leave, and final settlement. Phase 5: Build
+employee profiles and multi-employee payroll workflows. Phase 6: Add
+salary slip generation, reports, and file import/export. Phase 7: Add
+local storage and offline PWA support. Phase 8: Add secure
+authentication, cloud database, roles, and company separation. Phase 9:
+Add optional Google Sheets integration and synchronization. Phase 10:
+Complete translations, security checks, accessibility review, and
+automated testing. Phase 11: Provide setup, deployment, backup, and
+maintenance instructions.
+
+After each phase, verify existing features still work. Do not stop after
+the architecture plan or the first UI. Continue building as much as the
+environment permits and clearly state any remaining work.
+
+============================================================ 24. FINAL
+ACCEPTANCE CRITERIA
+============================================================
+
+The application is ready only when: - Personal, multi-employee, and full
+payroll modes work. - Salary calculations are testable and
+transparent. - Legal estimates are distinguished from company payroll
+calculations. - The reference salary slip is checked privately and
+discrepancies are shown. - The reference employee’s personal data is not
+exposed publicly. - User and company records are separated and
+access-controlled. - Supported languages render correctly. - Arabic and
+Urdu RTL layout works. - Offline calculations work where supported. -
+Online synchronization requires real configuration and authorization. -
+Reports can be exported. - No button is presented as functional when it
+is not. - Automated tests and known limitations are documented.
+
+Prioritize calculation accuracy, privacy, legal compliance,
+accessibility, and reliability over decorative animations.
+
+END OF MASTER PROMPT
+
+============================================================ CONTINUE
+BUILDING MESSAGE
+============================================================
+
+If the AI tool stops after making a plan or partial interface, send this
+message:
+
+Continue implementing the project according to the full master prompt in
+the attached text file. Do not repeat the plan. Inspect the existing
+code, identify incomplete or nonfunctional features, and implement the
+next highest-priority missing feature. Keep the calculation engine
+separate from UI code, run or add tests, and report exactly what works,
+what remains incomplete, and which external configuration is required.
+Do not claim that cloud storage, authentication, Google Sheets, or
+offline sync works unless it has actually been configured and tested.
+
+============================================================ IMPORTANT
+REAL-WORLD NOTE
+============================================================
+
+An AI-generated app is not automatically production-ready. Before using
+real employee data, test authentication, database access rules,
+backup/recovery, calculations, and deployment security. Cloud accounts,
+Google Sheets integration, and cross-device synchronization require
+proper configuration. Legal calculations must be verified against
+current official Saudi rules and the employee’s actual contract and
+circumstances.

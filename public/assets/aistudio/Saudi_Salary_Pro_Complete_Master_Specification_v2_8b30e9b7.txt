@@ -1,0 +1,690 @@
+SAUDI SALARY PRO
+COMPLETE APPLICATION MASTER SPECIFICATION
+A Personal Employment, Salary, Attendance, Leave, Documents, and Benefits Platform
+Version 2.0 | Prepared 27 October 2026
+
+============================================================
+0. PURPOSE — BUILD A NEW APPLICATION FROM SCRATCH
+============================================================
+
+This document is the COMPLETE, STANDALONE MASTER SPECIFICATION for Saudi Salary Pro.
+
+IMPORTANT: I want a NEW implementation from scratch. Do not continue, patch, or preserve the previous application's modules, UI, architecture, or data model merely because they already exist. The earlier implementation did not meet my needs. You may inspect it only to understand the environment or reuse an individual component if it is demonstrably high quality and compatible with this specification. Otherwise, replace the old implementation with a coherent new application.
+
+Do not only write a plan or create static mockups. Build the actual working application, implement real data flows and calculations, and test what can be tested in the available environment. Do not claim that features work if they are only visual placeholders or require configuration that has not been completed.
+
+PRODUCT VISION
+Saudi Salary Pro is a modern, mobile-first, multilingual personal employment and salary management application for expatriate employees working in Saudi Arabia. The app owner, coworkers, and other employees should be able to open the same shareable public app link and register their own private accounts.
+
+Every user manages their own records. The application is NOT an employer HR system and must not contain a shared employer employee directory, company-wide HR dashboard, or features that expose one user's private data to another user.
+
+Primary users include expatriate employees who want to manage their work attendance, overtime, salary slips, leave, contracts, personal employment documents, benefits estimates, financial records, and career history.
+
+============================================================
+1. CORE PRODUCT PRINCIPLES
+============================================================
+
+1. Personal ownership: every user owns and manages their own data.
+2. Privacy by design: users must not be able to see other users' records.
+3. Practical functionality: buttons, forms, calculators, exports, and data storage must actually work.
+4. Transparent calculations: display formulas, assumptions, sources, and limitations.
+5. Historical accuracy: never silently overwrite prior salary or employment history.
+6. Multilingual from the start: do not bolt translations on at the end.
+7. Mobile-first: optimize for phones while also supporting tablets and desktop.
+8. Exportability: users must be able to take their own data with them.
+9. Honest implementation: clearly disclose any incomplete integrations and configuration needs.
+10. No fake integrations: do not simulate successful cloud backup, AI scanning, authentication, or notifications when they are not truly connected.
+
+============================================================
+2. PUBLIC SHARING, ACCOUNTS, AND USER DATA ISOLATION
+============================================================
+
+The same public app URL should be shareable with coworkers and other expatriate employees. Each user should be able to register, log in, log out, and access their own private workspace.
+
+Required:
+- Real authentication using a suitable authentication provider or secure backend.
+- Secure sessions and account recovery where supported.
+- A private workspace for each authenticated user.
+- Server-side authorization and database access rules that enforce user ownership.
+- Every read, create, update, delete, upload, download, export, backup, and restore action must verify the authenticated user's ownership.
+- Test for attempts to access another user's records by changing a record ID, URL, or API request.
+- Do not rely on hiding UI elements or filtering data only in the browser for security.
+- Do not expose sensitive records in public pages, logs, analytics, or demo content.
+- Account data export and deletion.
+- Privacy policy and clear explanation of data storage, where appropriate before public release.
+
+If backend, database, authentication, hosting, OAuth, or security rules need external setup, implement what is possible and list exact remaining steps. Do not call the application production-ready until the real configuration and security checks are completed.
+
+============================================================
+3. MAIN NAVIGATION AND DASHBOARD
+============================================================
+
+Build a clear, polished interface with these primary modules:
+
+- Dashboard
+- My Profile
+- Employment & Contracts
+- Attendance & Working Hours
+- Overtime
+- Leave & Absence
+- Salary & Payslips
+- Salary Reconciliation
+- EOSB Calculator
+- Final Settlement
+- Documents
+- Personal Finance
+- Reports & Exports
+- Reminders
+- Language & Settings
+- Backup & Data Management
+- Help / Saudi Labor Law Assistant
+
+Dashboard cards should show only the current user's information:
+- Current employer and job title
+- Employment duration
+- Latest salary and payment date
+- Current month's recorded overtime
+- Attendance and leave summary
+- Annual leave balance estimate
+- EOSB estimate
+- Final settlement estimate
+- Upcoming contract, Iqama, passport, and insurance reminders
+- Recent salary slips and documents
+- Backup status and last backup date
+
+Include quick actions:
+- Record Attendance
+- Add Overtime
+- Record Leave/Absence
+- Add Salary Slip
+- Upload/Scan Document
+- Calculate EOSB
+- Calculate Final Settlement
+- Generate Monthly Report
+- Export My Data
+- Back Up My Data
+
+Use a modern professional visual system, excellent spacing, readable typography, clear charts, accessible colors, responsive cards, useful empty states, loading states, success messages, and actionable error messages. Avoid clutter and decorative components that do not help the user.
+
+============================================================
+4. PERSONAL PROFILE
+============================================================
+
+Allow the user to enter and update their own:
+- Full name
+- Preferred display name (optional)
+- Nationality
+- Date of birth (optional)
+- Phone and email (optional)
+- Iqama number and expiry date (optional)
+- Passport number and expiry date (optional)
+- Current city (optional)
+- Emergency contact (optional; protect as sensitive data)
+- Preferred language
+- Preferred currency display
+- Date/time format
+
+Collect only data necessary for the features the user chooses. Sensitive fields should be optional where possible and protected appropriately.
+
+============================================================
+5. EMPLOYMENT AND CONTRACT HISTORY
+============================================================
+
+Allow multiple separate employment periods and employers over the user's career.
+
+For each employment period, support:
+- Employer name
+- Job title
+- Department
+- Employee number (optional)
+- Work location
+- Joining date
+- Last working date, if applicable
+- Contract type
+- Contract start and end dates
+- Probation dates/duration
+- Notice period
+- Weekly schedule and rest day(s)
+- Expected daily/weekly hours
+- Insurance provider and expiry (optional)
+- Contract document and related notes
+
+Requirements:
+- Maintain an employment timeline.
+- Keep old employment records after the user changes jobs.
+- Keep separate salary, leave, and settlement records for each employer.
+- Do not automatically combine unrelated employment periods for EOSB.
+- Allow documents and notes to be attached to the correct employment period.
+- Provide contract and employment date reminders.
+
+============================================================
+6. VERSIONED SALARY HISTORY
+============================================================
+
+Maintain salary history without overwriting previous values.
+
+Each salary version should include:
+- Effective-from date and optional effective-to date
+- Basic salary
+- Housing allowance
+- Food allowance
+- Transport allowance
+- Other fixed allowances
+- Variable allowances, where applicable
+- Pay frequency
+- Contractual salary notes
+- Supporting offer letter or salary increment document
+
+When salary changes, create a new version and preserve previous history. Support salary change dates within a month and clearly state which version is used in each calculation. Do not assume every allowance is treated the same way under every Saudi labor law calculation.
+
+============================================================
+7. DAILY ATTENDANCE AND WORKING-HOURS TRACKER
+============================================================
+
+This is a core module, not an optional add-on.
+
+Allow the user to record, edit, search, filter, and view their own daily records.
+
+Fields:
+- Date
+- Attendance status
+- Shift type: Day, Night, Rotating, or Custom
+- Scheduled start/end time
+- Actual clock-in and clock-out time
+- Break duration
+- Calculated elapsed duration
+- Net working hours after recorded breaks
+- Regular hours according to the configured schedule
+- Manually recorded overtime hours
+- Estimated overtime, where sufficient inputs exist
+- Weekly rest day indicator
+- Public holiday indicator
+- Optional work location
+- Notes
+- Optional private attachment
+
+Required:
+- Support night shifts crossing midnight.
+- Handle breaks and shifts crossing date boundaries.
+- Support configurable schedules and rest days.
+- Allow incomplete entries and flag them rather than inventing missing times.
+- Validate impossible time combinations.
+- Warn about likely duplicate entries.
+- Provide day, week, month, and custom date-range views.
+- Permit user corrections and maintain change history for important edits where feasible.
+
+Keep separate:
+A. Total elapsed shift time.
+B. Net working hours.
+C. Scheduled/regular hours.
+D. User-recorded overtime.
+E. Estimated legally payable overtime.
+
+Do not assume that all time above a generic threshold is legally payable overtime. Explain the selected calculation basis and request missing inputs where necessary.
+
+============================================================
+8. OVERTIME CALCULATOR AND DAILY OVERTIME LEDGER
+============================================================
+
+Provide both:
+- A manual overtime calculator.
+- An overtime ledger linked to daily attendance and salary periods.
+
+Fields include date, hours/minutes, overtime type, notes, approval status entered by the user, and optional evidence.
+
+Features:
+- Daily and monthly overtime totals.
+- Overtime hours by date range.
+- Compare recorded overtime with payslip overtime.
+- Estimate amount using verified, current applicable rules and transparent wage inputs.
+- Show the exact formula, inputs, assumptions, source, and calculation date.
+- Support corrections without losing the history of prior values.
+
+Do not hard-code an unverified legal formula or assume all wage components are treated identically. Verify the current official Saudi rules and relevant regulations. Clearly label estimates and distinguish recorded hours from legally payable hours.
+
+============================================================
+9. LEAVE, ABSENCE, SICK LEAVE, AND HOLIDAY TRACKER
+============================================================
+
+Support:
+- Present
+- Absent
+- Sick Leave
+- Annual Leave
+- Emergency Leave
+- Unpaid Leave
+- Public Holiday
+- Weekly Off
+- Other Leave
+
+For each record:
+- Single date or date range
+- Full day, half day, or hourly duration where appropriate
+- Leave type
+- Paid/unpaid status
+- Optional reason/notes
+- Optional supporting document
+- User-entered approval status: Pending, Approved, Rejected, or Not Applicable
+
+Track:
+- Configured leave entitlement
+- Accrual inputs and dates
+- Leave taken
+- Leave balance
+- Historical balance by leave year
+- Carryover rules if applicable
+- Absence totals
+- Sick leave totals
+- Paid/unpaid leave totals
+
+Do not treat all leave categories as legally equivalent. Use verified rules and make user-entered assumptions visible.
+
+============================================================
+10. MONTHLY ATTENDANCE AND EMPLOYMENT REPORT
+============================================================
+
+Allow a user to select a month or custom date range and generate a report using their own saved records.
+
+Include:
+- Reporting period and generation date
+- Calendar days
+- Present days
+- Absence days
+- Sick leave days
+- Annual leave days
+- Other leave days
+- Weekly rest days
+- Public holidays
+- Full-day, half-day, and hourly leave totals
+- Scheduled hours
+- Recorded working hours
+- Regular hours
+- Recorded overtime hours
+- Estimated payable overtime, if enough data exists
+- Salary slip summary
+- Recorded deductions and adjustments
+- Missing/incomplete records
+- Notes
+- Calculation formulas and assumptions for estimates
+
+Export:
+- PDF
+- Excel XLSX
+- CSV
+- Print-ready report
+
+Requirements:
+- Preview before export.
+- Mobile-friendly layout.
+- Use the selected language.
+- Keep entered facts separate from calculated estimates.
+- Include totals and date range.
+- Do not falsely label the report as an official employer-approved attendance record.
+
+============================================================
+11. SALARY SLIPS AND PAYROLL HISTORY
+============================================================
+
+Support manual salary entry and PDF/image extraction.
+
+Salary record fields:
+- Employer
+- Pay period
+- Payment date
+- Basic salary
+- Housing allowance
+- Food allowance
+- Transport allowance
+- Other allowances
+- Overtime hours and amount
+- Bonus/commission
+- Gross earnings
+- Itemized deductions and reasons
+- Net salary
+- Actual bank credit amount/date entered by the user
+- Notes
+- Original salary slip attachment
+
+Manual entry must work even if AI services are unavailable.
+
+For PDF/JPG/JPEG/PNG upload:
+- Use OCR/AI only if configured.
+- Extract candidate values.
+- Display all extracted values in a review form.
+- Require user confirmation before saving.
+- Let the user correct mistakes.
+- Report unreadable/low-confidence fields where available.
+- Protect the uploaded file with private access controls.
+- Explain if sensitive content is sent to an external processing provider.
+
+Never use a fake success message to represent a failed or unconfigured OCR integration.
+
+============================================================
+12. SALARY RECONCILIATION AND BANK CREDIT TRACKER
+============================================================
+
+Compare separate data sources:
+- Expected salary based on the user's configured salary history
+- Salary slip gross/net figures
+- Recorded daily overtime
+- Overtime stated on the payslip
+- Actual bank credit entered by the user
+- Recorded deductions, advances, or adjustments
+
+Show differences and possible explanations, such as:
+- Different pay-period dates
+- Missing attendance entries
+- Different overtime calculation basis
+- Approved versus unapproved overtime
+- Rounding
+- Deductions or partial payments
+- Incomplete source data
+
+Do not call a difference confirmed unpaid wages without sufficient evidence. Provide formulas and a transparent explanation.
+
+============================================================
+13. END-OF-SERVICE BENEFIT (EOSB) ESTIMATOR
+============================================================
+
+Provide a dedicated EOSB calculator for each employment period.
+
+Collect the required information, including:
+- Employment start and end dates
+- Relevant wage/salary inputs
+- Employment type and contract details where relevant
+- Exit reason, such as resignation, termination, or contract expiry
+- Other inputs required by the applicable verified rules
+
+Display:
+- Employment duration
+- Selected rule and official source
+- Calculation formula
+- Inputs used
+- Estimated result
+- Applicable exceptions or missing information
+- Calculation date and limitations
+
+Verify current official Saudi Labor Law and applicable regulations. Account for relevant resignation/termination rules and exceptions rather than using one simplified formula for every case. Do not combine separate employers automatically. Clearly label results as estimates, not guaranteed entitlements.
+
+============================================================
+14. FINAL SETTLEMENT ESTIMATOR
+============================================================
+
+Create an itemized estimate that may include, when applicable and supported by the user's data:
+- Unpaid salary
+- Overtime due estimate
+- Unused leave compensation estimate
+- EOSB estimate
+- Documented unpaid allowances/bonus
+- Other recorded dues
+- Advances or loans to be deducted, if applicable and legally justified
+- Other documented deductions
+
+Show each component separately with the source of the data, formula, assumptions, and confidence/limitations. Allow the user to exclude or edit an item and see the impact. Do not imply every entered deduction is legally valid.
+
+============================================================
+15. PERSONAL DOCUMENT VAULT
+============================================================
+
+Allow private storage and categorization of:
+- Employment contracts
+- Salary slips
+- Offer letters
+- Iqama/passport copies, if the user chooses
+- Leave approvals
+- Salary increment letters
+- Experience certificates
+- Resignation letters
+- Final settlement documents
+- Insurance cards
+- Bank statements, if the user chooses
+- Other personal employment documents
+
+Features:
+- Categories and tags
+- Issue and expiry dates
+- Search and filters
+- Preview and download
+- Notes
+- Link document to an employment period or salary record
+- Replace document with confirmation
+- Private export and backup
+- Expiry reminders
+
+Sensitive files must never be publicly accessible. Use appropriate access controls and storage permissions. Explain the limits of local-only storage.
+
+============================================================
+16. REMINDERS AND CALENDAR
+============================================================
+
+Support reminders for:
+- Iqama expiry
+- Passport expiry
+- Contract expiry
+- Insurance expiry
+- Probation end
+- Notice period deadline
+- Planned leave
+- Expected salary payment date
+- Pending claim follow-up
+- Other user-created reminders
+
+Allow configurable reminder intervals. Explain whether reminders operate only inside the app or require browser/mobile push notifications and additional setup. Do not claim push notifications work until tested.
+
+============================================================
+17. PERSONAL FINANCE
+============================================================
+
+Allow optional personal financial tracking:
+- Salary income
+- Family remittance
+- Living expenses
+- Transport and food expenses
+- Loan/advance balances
+- Loan repayments
+- Bonus
+- Savings goals
+- Monthly budget
+- Actual versus planned spending
+
+Provide monthly summaries and simple charts. Keep finance records private and separate from employer-reported salary data. Do not connect to bank accounts unless a real, secure integration is configured and explicitly authorized.
+
+============================================================
+18. CAREER HISTORY AND SALARY GROWTH
+============================================================
+
+Provide:
+- Employment timeline across employers
+- Salary history chart
+- Salary raise history
+- Job-title changes
+- Employment duration
+- Previous contracts and documents
+- Separate records per employer
+- Exportable career summary
+
+Never delete older salary versions when a raise is entered. Use effective dates and preserve historical values.
+
+============================================================
+19. LABOR LAW ASSISTANT AND LETTER GENERATOR
+============================================================
+
+Provide a helpful assistant for explaining relevant Saudi employment topics and drafting professional messages, including:
+- Salary inquiry
+- Unpaid salary follow-up
+- Overtime inquiry
+- Leave balance inquiry
+- Leave request
+- Contract/notice clarification
+- EOSB/final settlement request
+- Experience certificate request
+- Resignation letter
+- Supporting-document checklist
+
+For legal explanations:
+- Use current official Saudi sources, prioritizing HRSD and applicable official legal texts.
+- Display the source and date checked.
+- Explain which user inputs affect the answer.
+- Clearly distinguish general information from legal advice.
+- Identify missing facts and possible exceptions.
+- Never invent legal citations or claim official government approval.
+- Never automatically accuse an employer of breaking the law without evidence.
+
+Generate drafts in the user's chosen language, including English, Arabic, and Bengali, with additional supported languages.
+
+============================================================
+20. MULTILINGUAL SUPPORT
+============================================================
+
+Provide a language selector and translation-ready architecture for:
+- English
+- Arabic
+- Bengali
+- Urdu
+- Hindi
+- Tagalog
+- Malayalam
+- Tamil
+- Nepali
+- Additional languages through a maintainable translation system
+
+Translate the actual interface, forms, validation messages, reports, and calculation explanations. Support RTL layout for Arabic and Urdu. Keep dates, time, and SAR currency clear and consistent. Review important legal translations instead of relying blindly on machine translation.
+
+============================================================
+21. DATA STORAGE, BACKUP, RESTORE, AND GOOGLE DRIVE
+============================================================
+
+Clearly distinguish:
+A. Local device/browser storage.
+B. Secure cloud database and account sync.
+C. Optional Google Drive backup.
+
+Requirements where implemented:
+- Personal export.
+- Backup and restore.
+- Import preview and validation.
+- Duplicate detection.
+- Last backup timestamp and status.
+- Connect/disconnect Google Drive.
+- Explain what data is backed up.
+- Delete user data and backups where supported.
+- Do not store Google passwords.
+- Use the user's own Google account through a real OAuth flow.
+- Use minimum required permissions.
+- Handle failed backup/restore honestly.
+
+Google Drive integration requires correct OAuth consent, API configuration, permissions, and testing. Do not claim it works until tested. Local browser storage alone is not a safe substitute for a backup.
+
+============================================================
+22. EXPORTS AND DATA PORTABILITY
+============================================================
+
+Users must be able to export their own data where appropriate:
+- Salary history
+- Salary slips and monthly salary summary
+- Attendance and overtime
+- Leave and absence
+- EOSB/final settlement estimates
+- Employment and contract history
+- Personal finance summaries
+- Document index
+- Complete structured personal data backup (such as JSON)
+
+Support PDF, XLSX, and CSV where appropriate. Preserve dates, currency, labels, and formulas/assumptions. Use clear file names and allow users to choose the reporting period. Do not export another user's records.
+
+============================================================
+23. PRIVACY, SECURITY, AND DATA CONTROL
+============================================================
+
+Implement:
+- Secure authentication and session management.
+- Server-side authorization for every private record.
+- Database-level access rules where supported.
+- Secure private file access.
+- Validation and sanitization of user inputs.
+- Safe handling of uploaded files.
+- Rate limiting and abuse protections where applicable.
+- No secrets or private API keys in public frontend code.
+- No real personal information in demos or logs.
+- Account/data deletion and export.
+- Clear disclosure of third-party processing.
+- No public profile or shared employee directory.
+
+Test at least two separate accounts and attempt to access one account's records from the other. Do not release the application to real users until these tests pass.
+
+============================================================
+24. TECHNICAL QUALITY AND TESTING
+============================================================
+
+Build the application using a maintainable architecture and real reusable components. Keep calculations in a testable calculation layer separate from presentation.
+
+Test:
+- User registration/login/logout and access control.
+- Attendance CRUD and persistence.
+- Overnight shifts and breaks.
+- Incomplete and duplicate attendance entries.
+- Leave and absence totals.
+- Overtime formulas and missing inputs.
+- Salary history effective dates.
+- Salary slip manual entry and OCR review.
+- Monthly report totals.
+- PDF, XLSX, and CSV exports.
+- EOSB and final settlement scenarios.
+- Date boundaries, leap years, and time zones.
+- Backup and restore.
+- Language switching and RTL layout.
+- Mobile responsiveness.
+- Cross-user data isolation.
+- Account deletion and error handling.
+
+Use fictional synthetic test data only. Run available build/type/lint/test checks and fix issues where possible. Do not merely create buttons; connect them to working logic and data.
+
+============================================================
+25. IMPLEMENTATION ORDER
+============================================================
+
+Implement in coherent stages while keeping the final product architecture in mind.
+
+Stage 1 — Secure foundation:
+- Architecture, authentication, database, access control, navigation, profile, and employment records.
+
+Stage 2 — Core daily use:
+- Attendance, working hours, overtime ledger, leave/absence, salary history, manual payslip entry, and monthly reports.
+
+Stage 3 — Calculations and documents:
+- Verified overtime estimate, leave estimates, EOSB, final settlement, private document vault, and reconciliation.
+
+Stage 4 — Exports and integrations:
+- PDF/XLSX/CSV, personal backup/restore, and optional Google Drive OAuth integration.
+
+Stage 5 — Advanced assistance:
+- OCR/AI salary slip extraction, labor law assistant, letter generator, personal finance, career analytics, reminders, and additional languages.
+
+Stage 6 — Release verification:
+- Security tests, data isolation tests, calculation tests, mobile/RTL tests, documentation, and deployment readiness review.
+
+Do not stop after Stage 1 or merely describe later stages. Implement as much as the environment allows, and clearly state what requires further configuration or development.
+
+============================================================
+26. FINAL ACCEPTANCE CRITERIA
+============================================================
+
+The application is not complete just because it looks good.
+
+A feature counts as complete only when its main workflow works, its data is handled correctly, errors are addressed, and appropriate tests have been performed.
+
+At the end, provide:
+1. A summary of the new architecture.
+2. Features actually implemented.
+3. Tests run and results.
+4. Known bugs and limitations.
+5. External setup still required (backend, database, authentication, hosting, OAuth, AI/OCR, notifications, etc.).
+6. Security and data isolation test results.
+7. Steps required to deploy and safely share the public app URL.
+8. A list of features that remain incomplete.
+
+FINAL INSTRUCTION TO GOOGLE AI STUDIO
+
+Build a NEW Saudi Salary Pro application from scratch based on this complete specification. Replace the previous inadequate implementation rather than merely adding modules to it. Preserve no old module just because it exists. Reuse individual components only if they are verified to be high quality, secure, and compatible.
+
+Build real functionality, test it, and be honest about limitations. The final goal is a secure, shareable, multilingual personal employment platform that each expatriate employee can use independently to manage their own employment records throughout their career.

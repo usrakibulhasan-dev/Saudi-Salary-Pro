@@ -1,0 +1,6 @@
+{
+  "name": "Saudi Salary Pro",
+  "description": "Saudi Arabia Employee Salary, Overtime, EOSB & Payroll Management Software with multilingual RTL support and Saudi Labor Law calculation engine.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

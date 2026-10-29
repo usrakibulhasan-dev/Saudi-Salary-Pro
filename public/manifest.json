@@ -1,0 +1,25 @@
+{
+  "id": "/",
+  "name": "Saudi Salary Pro — Employee Salary & Payroll Software",
+  "short_name": "SalaryPro",
+  "description": "Saudi Arabia Employee Salary, Overtime, EOSB, Annual Leave & Payroll Management Software.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#0F172A",
+  "theme_color": "#0F172A",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ]
+}
